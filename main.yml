@@ -1,0 +1,33 @@
+# Configuration file for Network Log Generator
+
+number_of_ips: 100
+
+total_message_counter: 1000000
+
+pool_size: 5
+
+min_packet_size: 100
+
+max_packet_size: 1000
+
+used_log_levels:
+  - INFO
+  - WARNING
+  - ERROR
+  - CRITICAL
+  - DEBUG
+  - TRACE
+
+used_ports:
+  - 80
+  - 443
+  - 22
+  - 21
+  - 25
+  - 110
+  - 143
+  - 993
+  - 995
+  - 3306
+
+output_file: "output.log"
