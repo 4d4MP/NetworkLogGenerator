@@ -13,11 +13,17 @@ def random_element(l):
     size = len(l)
     return l[r(0, size-1)]
 
-def ip_list_generator(count):
+def ip_list_generator(count, use_only_local_ips):
     ip_list = []
-    for i in range(count):
-        ip = f"{r(0, 255)}.{r(0, 255)}.{r(0, 255)}.{r(0, 255)}"
-        ip_list.append(ip)
+    if use_only_local_ips:
+        for i in range(count):
+            ip = f"192.168.{r(0, 255)}.{r(0, 255)}"
+            ip_list.append(ip)
+    else:
+        for i in range(count):
+            ip = f"{r(0, 255)}.{r(0, 255)}.{r(0, 255)}.{r(0, 255)}"
+            ip_list.append(ip)
+    
     return ip_list
 
 def generate_log_entry(source, target, log_level, port, size):
@@ -34,7 +40,8 @@ def get_packet_size(min, max):
 
 def __main__():
     cfg = get_config()
-    ip_list = ip_list_generator(cfg.number_of_ips)
+    use_only_local_ips = cfg.use_only_local_ips
+    ip_list = ip_list_generator(cfg.number_of_ips, use_only_local_ips)
     log_level_list = cfg.used_log_levels
     port_list = cfg.used_ports
     minimum_packet_size = cfg.min_packet_size
